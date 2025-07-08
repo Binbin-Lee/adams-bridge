@@ -1879,7 +1879,7 @@ always_ff @(posedge clk or negedge rst_b) begin
     zeroize_mem_done <= 0;
   end
   else if (abr_prog_cntr == MLDSA_ZEROIZE) begin
-    if (zeroize_mem_addr == ABR_MEM_MAX_DEPTH) begin
+    if (zeroize_mem_addr == ABR_MEM_MAX_DEPTH-1) begin
       zeroize_mem_addr <= 0;
       zeroize_mem_done <= 1;
     end else begin

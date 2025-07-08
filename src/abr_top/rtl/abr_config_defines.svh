@@ -18,7 +18,6 @@
    `include "abr_sva.svh"
    // `define RV_FPGA_OPTIMIZE
    // `define RV_FPGA_SCA
-   `define MLDSA_MASKING
 
   `define ABR_ICG           abr_clk_gate
 
@@ -26,7 +25,7 @@
   abr_1r1w_ram \
   #( .DEPTH(``_depth``), \
      .DATA_WIDTH(``_width``)) \
-   mldsa_``_mem_name``_inst\
+   abr_``_mem_name``_inst\
    (\
       .clk_i(clk_i),\
       .we_i(abr_memory_export.``_mem_name``_we_i),\
@@ -41,16 +40,16 @@
   abr_1r1w_be_ram \
   #( .DEPTH(``_depth``), \
      .DATA_WIDTH(``_width``))  \
-     mldsa_``_mem_name``_inst\
-     (\
-        .clk_i(clk_i),\
-        .we_i(abr_memory_export.``_mem_name``_we_i),\
-        .waddr_i(abr_memory_export.``_mem_name``_waddr_i),\
-        .wdata_i(abr_memory_export.``_mem_name``_wdata_i),\
-        .wstrobe_i(abr_memory_export.``_mem_name``_wstrobe_i),\
-        .re_i(abr_memory_export.``_mem_name``_re_i),\
-        .raddr_i(abr_memory_export.``_mem_name``_raddr_i),\
-        .rdata_o(abr_memory_export.``_mem_name``_rdata_o)\
-     );
-  
+   abr_``_mem_name``_inst\
+   (\
+      .clk_i(clk_i),\
+      .we_i(abr_memory_export.``_mem_name``_we_i),\
+      .waddr_i(abr_memory_export.``_mem_name``_waddr_i),\
+      .wdata_i(abr_memory_export.``_mem_name``_wdata_i),\
+      .wstrobe_i(abr_memory_export.``_mem_name``_wstrobe_i),\
+      .re_i(abr_memory_export.``_mem_name``_re_i),\
+      .raddr_i(abr_memory_export.``_mem_name``_raddr_i),\
+      .rdata_o(abr_memory_export.``_mem_name``_rdata_o)\
+   );
+
 `endif

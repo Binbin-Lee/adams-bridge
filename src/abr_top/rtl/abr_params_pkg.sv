@@ -16,7 +16,7 @@
 //
 // abr_params_pkg.sv
 // --------
-// Common params and defines for ML-DSA 87
+// Common params and defines for ML-DSA 87 and ML-KEM 1024
 //
 //======================================================================
 
@@ -47,15 +47,15 @@ package abr_params_pkg;
 
   parameter COEFF_PER_CLK = 4;
 
-  parameter MLDSA_NUM_SHARES = 2; //set this to 1 if masking disabled
-  parameter MLDSA_SHARE_WIDTH = MLDSA_Q_WIDTH * MLDSA_NUM_SHARES;
+  parameter ABR_NUM_SHARES = 2; //set this to 2 if masking enabled, 1 if not
+  parameter MLDSA_SHARE_WIDTH = MLDSA_Q_WIDTH * ABR_NUM_SHARES;
 
   //Can be 1 or 2 only
   parameter ABR_NUM_NTT = 1;
   
   //Memory interface
   parameter ABR_MEM_DATA_WIDTH = COEFF_PER_CLK * MLDSA_Q_WIDTH; //96
-  parameter ABR_MEM_MASKED_DATA_WIDTH = (COEFF_PER_CLK * MLDSA_NUM_SHARES) * (MLDSA_Q_WIDTH * MLDSA_NUM_SHARES); //384
+  parameter ABR_MEM_MASKED_DATA_WIDTH = (COEFF_PER_CLK * ABR_NUM_SHARES) * (MLDSA_Q_WIDTH * ABR_NUM_SHARES); //384
 
   parameter ABR_MEM_MASKED_INST = 3;
 
