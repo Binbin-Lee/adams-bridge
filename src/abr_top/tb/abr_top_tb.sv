@@ -21,7 +21,7 @@
 
 import "DPI-C" function string getenv(input string env_name);
 
-`include "mldsa_config_defines.svh"
+`include "abr_config_defines.svh"
 
 module abr_top_tb
   import abr_params_pkg::*;
@@ -98,6 +98,7 @@ module abr_top_tb
   wire [AHB_DATA_WIDTH-1:0] hrdata_o_tb;
 
   reg [31:0] write_data;
+  abr_mem_if abr_mem_dummy();
 
   assign clk_i = clk_tb;
   assign rst_b = reset_n_tb;
@@ -122,7 +123,8 @@ module abr_top_tb
 
   .hresp_o(hresp_o_tb),
   .hrdata_o(hrdata_o_tb),
-  .hreadyout_o(hreadyout_o_tb)
+  .hreadyout_o(hreadyout_o_tb),
+  .abr_memory_export(abr_mem_dummy.req)
   );
 
   //----------------------------------------------------------------
